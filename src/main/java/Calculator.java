@@ -1,10 +1,11 @@
+import static java.lang.Math.min;
+
 import java.util.ArrayList;
 
 public class Calculator {
-    private int countPerson;
+    private final int countPerson;
     private float costAllGoods;
-    private float costPerPerson;
-    private ArrayList<Goods> goodsList;
+    private final ArrayList<Goods> goodsList;
     public Calculator(int countPerson) {
         this.countPerson = countPerson;
         this.costAllGoods = 0;
@@ -25,24 +26,20 @@ public class Calculator {
             System.out.printf("\"%s\" цена: %.2f %s\n", goodName, cost, getRub(cost));
         }
         System.out.printf("Полная стоимость товаров: %.2f %s\n", costAllGoods, getRub(costAllGoods));
-        costPerPerson = costAllGoods / countPerson;
+        float costPerPerson = costAllGoods / countPerson;
         System.out.printf("Соимость которую должен заплатить каждый человек: %.2f %s.\n",
                 costPerPerson, getRub(costPerPerson));
     }
 
     private String getRub(float cost) {
+        String[] rubWord = {"рубль", "рубля", "рублей"};
+        int[] indexRubWord = {2, 0, 1, 1, 1, 2};
         int costInt = (int)cost;
-        if (costInt > 20) {
-           int des = costInt / 10;
-           costInt -= des * 10;
-        }
-        switch (costInt) {
-            case 1:
-                return "рубль";
-            case 2, 3, 4:
-                return "рубля";
-            default:
-                return "рублей";
+
+        if (costInt % 100 > 4 && costInt % 100 < 20) {
+            return rubWord[2];
+        } else {
+            return rubWord[indexRubWord[min(costInt % 10, 5)]];
         }
     }
 }
