@@ -14,7 +14,7 @@ public class Calculator {
 
     public void addGood(String name, float cost) {
         goodsList.add(new Goods(name, cost));
-        System.out.printf("Товар \"%s\" ценой %.2f %s добавлен!\n", name, cost, getRub(cost));
+        System.out.printf("Товар \"%s\" ценой %.2f %s добавлен!\n\n", name, cost, getRub(cost));
     }
 
     public void calculate() {

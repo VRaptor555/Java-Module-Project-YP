@@ -23,13 +23,14 @@ public class Main {
             }
         }
         Calculator calc = new Calculator(count);
-        System.out.println("Введите название товара, затем его цену:");
+        System.out.println("Введите название товара:");
         while (true) {
             scanner.nextLine(); // Убираем перенос строки оставшийся от nextInt() или nextFloat()
             String nameGood = scanner.nextLine(); // Может состоять из нескольких слов, например "Горошек зеленый"
             if (nameGood.equalsIgnoreCase("Завершить")) {
                 break;
             }
+            System.out.println("Введите цену товара:");
             while (costGood <= 0) {
                 if (scanner.hasNextFloat()) {
                     costGood = scanner.nextFloat();
